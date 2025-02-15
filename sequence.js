@@ -43,7 +43,3 @@ const s = initS3();
 process.argv.slice(2).forEach(
   arg => console.log(arg, s(arg))
 );
-
-// Example commands:
-// node sequence.js 11 8 1 10 9 6 2
-// node sequence.js 10000

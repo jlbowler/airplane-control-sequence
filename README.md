@@ -1,50 +1,37 @@
-# React + TypeScript + Vite
+## Airplane Control
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+To fly an airplane:
+```
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Use WASD to steer
+- **Speed:** W and S
+- **Direction:** A and D
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Sequence
+A series of implementations to calculate the provided sequence value `S(n)` for one or more values of `n`
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Example usage:
 ```
+node sequence.js 11 8 1 10 9 6 2
+node sequence.js 10000
+```
+
+### S0
+Direct implementation of the provided formula.
+
+Because of the recursion, it doesn't scale to `n=10000`.
+
+### S1
+Through algebraic substitution, I identified that the function need only compute odds *or* evens, reducing by half.
+
+### Final: S2
+Replaced recursion with iteration.
+
+**Runtime Complexity:** O(N)
+
+### Bonus: S3
+To reduce computation when computing multiple values, I memoized the results with arrays for odds and evens.
+
+**Best-Case Runtime Complexity:** O(1) for memoized values
